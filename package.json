@@ -1,0 +1,32 @@
+{
+  "name": "gulp",
+  "private": true,
+  "version": "1.0.0",
+  "description": "gulp assembly for projects",
+  "main": "index.html",
+  "author": "archibracho",
+  "license": "ISC",
+  "scripts": {
+    "build": "gulp build",
+    "start": "gulp"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead",
+    "not ie <= 11"
+  ],
+  "editorconfig-cli": [
+    "*.json",
+    "*.js",
+    "#src/*.html",
+    "#src/js/**/*.js",
+    "#src/img/**/*.svg",
+    "#src/sss/**/*.scss"
+  ],
+  "engines": {
+    "node": "14.15.0"
+  },
+  "devDependencies": {
+    "@htmlacademy/editorconfig-cli": "^1.0.0"
+  }
+}
