@@ -27,6 +27,15 @@
     "node": "14.15.0"
   },
   "devDependencies": {
-    "@htmlacademy/editorconfig-cli": "^1.0.0"
+    "@htmlacademy/editorconfig-cli": "^1.0.0",
+    "browser-sync": "^2.27.5",
+    "del": "^6.0.0",
+    "gulp": "4.0.2",
+    "gulp-file-include": "^2.3.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-imagemin": "^8.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-webp": "^4.0.1"
   }
 }
