@@ -78,6 +78,7 @@ const getHtml = () => {
 // Работа с CSS
 const getCss = () => {
   return src(path.source.css)
+    .pipe(sourcemap.init())
     .pipe(
       scss({
         outputStyle: 'expanded'
@@ -85,7 +86,7 @@ const getCss = () => {
         .on('error', scss.logError)
     )
     .pipe(autoprefixer())
-    .pipe(dest(path.build.css))
+    .pipe(gulp.dest(path.build.css))
     .pipe(cleanCSS())
     .pipe(
       rename({

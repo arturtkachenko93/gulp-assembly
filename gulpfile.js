@@ -11,9 +11,10 @@ const path = {
   },
   source_folder : {
     html: [source_folder + '/*.html', '!' + source_folder + '/_*.html'],
-    css: project_folder + '/scss/style.scss',
-    js: project_folder + '/js/**/*.js',
+    css: source_folder + '/scss/style.scss',
+    js: source_folder + '/js/**/*.js',
     img: source_folder + '/img/**/*.{jpg,png,svg,gif,ico,jpeg,webp}',
+    svg: source_folder + '/img/**/*.svg',
     fonts: source_folder + '/fonts/*.ttf',
   },
 
@@ -33,9 +34,17 @@ const plumber = require('gulp-plumber');
 const del = require('del');
 const rename = require('gulp-rename');
 const htmlmin = require('gulp-htmlmin');
+const scss = require('gulp-sass')(require('sass'));
+const postcss = require('gulp-postcss');
+const sourcemap = require('gulp-sourcemaps');
+const autoprefixer = require('autoprefixer');
+const csso = require('postcss-csso');
 const webp = require('gulp-webp');
 const fileInclude = require('gulp-file-include');
-const imagemin = require('gulp-imagemin');
+const imagemin = require("gulp-imagemin");
+const svgsprite = require('gulp-svgstore');
+const svgmin = require ('gulp-svgmin');
+const uglify = require('gulp-uglify-es').default;
 
 // HTML
 
@@ -53,6 +62,44 @@ const htmlMin = () => {
     .pipe(gulp.dest(path.project_folder.html));
 }
 
+
+// Styles
+
+const styles = () => {
+  return gulp.src(path.source_folder.css)
+  .pipe(plumber())
+  .pipe(sourcemap.init())
+    .pipe(scss().on('error', scss.logError))
+    .pipe(postcss([
+      autoprefixer()]
+    ))
+    .pipe(gulp.dest(path.project_folder.css))
+    .pipe(rename("style.min.css"))
+    .pipe(postcss([
+      csso()]
+    ))
+    .pipe(sourcemap.write("."))
+    .pipe(gulp.dest(path.project_folder.css))
+    .pipe(sync.stream());
+}
+
+exports.styles = styles;
+
+
+// Js
+
+const scripts = () => {
+  return gulp.src(path.source_folder.js)
+    .pipe(rename({
+      extname: '.min.js'
+    }))
+    .pipe(uglify())
+    .pipe(gulp.dest(path.project_folder.js))
+    .pipe(gulp.src(path.source_folder.js))
+    .pipe(gulp.dest(path.project_folder.js));
+}
+
+exports.scripts = scripts;
 
 // Images
 
@@ -76,6 +123,18 @@ const images = () => {
 
 exports.images = images;
 
+
+// Sprite
+
+const sprite = () => {
+  return gulp.src(path.source_folder.svg)
+    .pipe(svgsprite())
+    .pipe(rename('sprite.svg'))
+    .pipe(gulp.dest(path.project_folder.img));
+}
+
+exports.sprite = sprite
+
 // Clean
 
 const clean = () => {
@@ -84,14 +143,16 @@ const clean = () => {
 
 // Server
 
-const server = () => {
+const server = (done) => {
   sync.init({
     server: {
-      baseDir: './' + project_folder + '/'
+      baseDir: project_folder
     },
-    port: 3000,
+    cors: true,
     notify: false,
-  })
+    ui: false,
+  });
+  done();
 }
 
 exports.server = server;
@@ -106,7 +167,9 @@ const reload = done => {
 // Watcher
 
 const watcher = () => {
-  gulp.watch(watch.html, gulp.series(html, reload));
+  gulp.watch(path.watch.html, gulp.series(html, reload));
+  gulp.watch(path.watch.css, gulp.series(styles, reload));
+  gulp.watch(path.watch.js, gulp.series(scripts, reload));
 }
 
 // Build
@@ -116,7 +179,10 @@ const build = gulp.series(
   gulp.parallel(
     html,
     htmlMin,
-    images
+    styles,
+    scripts,
+    images,
+    sprite,
   )
 );
 
@@ -129,7 +195,9 @@ exports.default = gulp.series(
   clean,
   gulp.parallel(
     html,
-    htmlMin
+    htmlMin,
+    styles,
+    scripts,
   ),
   gulp.series(
     server,
