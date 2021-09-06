@@ -1,20 +1,21 @@
-Все действия выполнять с правами администратора!
+#Все действия выполнять с правами администратора!
 
-1) Установить NodeJS
-2) Установить gulp глобально через терминал - npm install --global gulp-cli
-3) Создать папку проекта и в ней запустить терминал
-4) Создать информационный файл package.json - npm init => ответить на вопросы
-5) Установить gulp для проекта - npm install gulp --save-dev
-6) Создать файл gulpfile.js, который будет хранить в себе сценарий сборки
-7) Создать папку с исходными файлами проекта - #src => fonts, img, scss, js
-8) Скопировать в файл gulpfile.js следующий код =>
-        function defaultTask(cb) {
+:white_check_mark: Установить NodeJS arrow_right: [NODEJS]https://nodejs.org/en/ LTS версию
+:white_check_mark: Установить gulp глобально через терминал (устанавливается один раз на ПК) arrow_right: npm install --global gulp-cli
+Если же gulp установлен, то обновить arrow_right:
+    npm rm --global gulp
+:white_check_mark: Создать папку проекта и в ней запустить терминал
+:white_check_mark: Создать информационный файл package.json arrow_right: npm init / ответить на вопросы
+:white_check_mark: Установить gulp для проекта arrow_right: npm install gulp --save-dev
+:white_check_mark: Создать файл gulpfile.js для настройки задач и сборки
+:white_check_mark: Создать папку с исходными файлами проекта arrow_right: source / fonts, img, scss, js
+:white_check_mark: Скопировать в файл gulpfile.js следующий код arrow_right:
+        ```function defaultTask(cb) {
             // place code for your default task here
             cb();
         }
-
         exports.default = defaultTask
-9) Протестировать сборку - в терминале gulp
-10) При возникновении ошибок, сброс пакетного менеджера - npm cache clean --force =>
-    npm i npm -g => Выполнить установку gulp с самого начала (п.1)
-11) Удаляем тестовый код
+        ```
+:white_check_mark: Протестировать сборку arrow_right: gulp в терминале
+:exclamation: При возникновении ошибок, сброс пакетного менеджера arrow_right: npm cache clean --force / npm i npm -g arrow_right: Выполнить установку gulp с самого начала (п.1)
+:white_check_mark: Удалить тестовый код
