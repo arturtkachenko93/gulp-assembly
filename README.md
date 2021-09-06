@@ -31,3 +31,11 @@
 :exclamation: При возникновении ошибок, сброс пакетного менеджера :arrow_right: npm cache clean --force / npm i npm -g :arrow_right: Выполнить установку gulp с самого начала (п.1)
 
 :white_check_mark: Удалить тестовый код
+
+:exclamation: Для запуска сервера :arrow_right: **npm start** в терминале
+
+:exclamation: Для запуска сборки :arrow_right: **npm run build** в терминале
+
+:grey_exclamation: Исходные файлы проекта находятся в папке **source**
+
+:grey_exclamation: Готовая сборка проекта находится в папке **build**
