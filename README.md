@@ -32,6 +32,8 @@
 
 :white_check_mark: Удалить тестовый код
 
+:white_check_mark: Установить все пакеты npm :arrow_right: npm i в терминале
+
 :exclamation: Для запуска сервера :arrow_right: **npm start** в терминале
 
 :exclamation: Для запуска сборки :arrow_right: **npm run build** в терминале
