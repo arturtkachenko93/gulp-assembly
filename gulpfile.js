@@ -199,7 +199,6 @@ exports.build = build;
 // Default
 
 exports.default = gulp.series(
-  clean,
   gulp.parallel(html, styles, scripts),
   gulp.series(server, watcher)
 );
