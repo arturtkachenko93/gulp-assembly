@@ -145,6 +145,8 @@ const fonts = () => {
     .pipe(gulp.dest(path.project_folder.fonts))
     .pipe(gulp.src(path.source_folder.fonts))
     .pipe(ttf2woff2())
+    .pipe(gulp.dest(path.project_folder.fonts))
+    .pipe(gulp.src('source/fonts/*.{woff, woff2}'))
     .pipe(gulp.dest(path.project_folder.fonts));
 };
 

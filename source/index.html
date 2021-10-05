@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="page" lang="ru">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/style.css">
-  <title>GulpProject</title>
+  <link rel="preload" href="fonts/Barlow-Regular.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="fonts/Barlow-Medium.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="preload" href="fonts/Barlow-Bold.woff2" as="font" type="font/woff2" crossorigin="">
+  <link rel="stylesheet" href="css/style.min.css">
+  <title>iinto</title>
 </head>
 
-<body>
-  @@include('_header.html')
-  <main>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia quas facilis et nam consequatur eius cupiditate eveniet, voluptates soluta praesentium hic fugit optio dolorum nobis iusto nemo esse tenetur iure.</p>
+<body class="page__body">
+  @@include('_header.html',{})
+  <main class="main">
+    <picture>
+      <source srcset="img/bg.webp" type="image/webp">
+      <img class="main__background-img" src="img/bg.jpg" alt="Background picture" width="700" height="1000">
+    </picture>
   </main>
   <script src="js/script.min.js"></script>
 </body>

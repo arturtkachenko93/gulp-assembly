@@ -1,1 +1,21 @@
+// Переменные
+
+$bgcolor: #EFF6FF;
+$fontcolor: #2A4A5C;
+$white: #FFFFFF;
+$black: #666666;
+$hover: #AFAFAF;
+$active: #3698FB;
+$line: #AFAFAF;
+
+$mobile: 767px;
+$tablet: 768px;
+$desktop: 1100px;
+
+// Подключение стилей
+
+@import "null";
+@import "fonts";
+@import "page";
 @import "header";
+@import "main";
